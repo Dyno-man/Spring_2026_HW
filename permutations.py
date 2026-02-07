@@ -4,19 +4,19 @@ def decrease_by_one(n):
 
     prev = decrease_by_one(n - 1)
     result = []
-    direction = True  # True = right to left, False = left to right
+    direction = True 
 
     for perm in prev:
-        if direction:  # right to left
+        if direction: 
             for i in range(len(perm), -1, -1):
                 confirm = perm[:i] + [n] + perm[i:]
                 result.append(confirm)
-        else:  # left to right
+        else:  
             for i in range(len(perm) + 1):
                 confirm = perm[:i] + [n] + perm[i:]
                 result.append(confirm)
 
-        direction = not direction  # switch direction
+        direction = not direction 
 
     return result
 
