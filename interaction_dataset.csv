@@ -1,0 +1,121 @@
+time,from,to,type,weight,description
+1,A,B,reply,0.8,Answered question quickly
+2,C,A,task_support,1.0,Helped complete feature
+3,B,D,reply,0.6,Delayed response
+4,D,C,code_review,0.9,Approved PR with feedback
+5,E,A,help_request,0.4,Asked for clarification
+6,A,E,reply,0.9,Provided detailed solution
+7,F,B,task_support,0.7,Assisted with debugging
+8,C,F,reply,0.5,Partial answer
+9,B,A,code_review,0.8,Minor suggestions
+10,D,B,reply,0.7,Moderate response time
+11,A,C,task_support,1.0,Completed dependency
+12,E,D,reply,0.6,Follow up response
+13,F,E,code_review,0.9,Strong feedback
+14,B,C,help_request,0.5,Asked for help
+15,C,B,reply,0.8,Quick clarification
+16,A,D,reply,0.7,Helpful answer
+17,D,F,task_support,0.9,Resolved blocker
+18,E,C,reply,0.6,Average response
+19,F,A,help_request,0.5,Needed assistance
+20,A,F,reply,0.9,Provided solution
+21,B,E,reply,0.7,Answered question
+22,C,D,task_support,0.9,Helped fix bug
+23,D,A,reply,0.6,Slow reply
+24,E,B,code_review,0.8,Reviewed PR
+25,F,C,reply,0.7,Clarified issue
+26,A,B,task_support,1.0,Resolved dependency
+27,B,F,reply,0.6,Average reply
+28,C,E,reply,0.7,Helpful response
+29,D,C,task_support,0.9,Assisted feature
+30,E,F,help_request,0.5,Asked question
+31,F,D,reply,0.8,Quick fix suggestion
+32,A,E,code_review,0.9,Approved PR
+33,B,C,reply,0.6,Moderate reply
+34,C,A,reply,0.8,Answered clearly
+35,D,B,task_support,0.9,Helped unblock
+36,E,D,reply,0.6,Average response
+37,F,A,reply,0.7,Provided insight
+38,A,C,code_review,0.8,Minor edits
+39,B,D,reply,0.5,Delayed response
+40,C,F,task_support,0.9,Fixed issue
+41,D,E,reply,0.7,Answered question
+42,E,A,reply,0.6,Short answer
+43,F,B,code_review,0.9,Detailed feedback
+44,A,F,task_support,1.0,Completed fix
+45,B,A,reply,0.7,Clarification
+46,C,B,reply,0.8,Quick response
+47,D,C,reply,0.6,Average speed
+48,E,F,task_support,0.9,Helped debug
+49,F,E,reply,0.7,Follow up
+50,A,D,reply,0.8,Strong answer
+51,B,E,task_support,0.9,Helped complete task
+52,C,D,reply,0.6,Moderate reply
+53,D,A,code_review,0.8,Reviewed changes
+54,E,B,reply,0.7,Clarified issue
+55,F,C,reply,0.6,Partial help
+56,A,B,reply,0.9,Strong response
+57,B,C,task_support,0.8,Helped debug
+58,C,E,reply,0.7,Answered question
+59,D,F,reply,0.6,Slow response
+60,E,D,task_support,0.9,Resolved issue
+61,F,A,reply,0.7,Clarified answer
+62,A,E,reply,0.8,Detailed response
+63,B,F,code_review,0.9,Good feedback
+64,C,A,task_support,1.0,Completed task
+65,D,B,reply,0.6,Moderate reply
+66,E,C,reply,0.7,Helpful answer
+67,F,D,task_support,0.9,Fixed bug
+68,A,C,reply,0.8,Strong explanation
+69,B,D,reply,0.5,Delayed reply
+70,C,F,reply,0.7,Clarified issue
+71,D,E,task_support,0.9,Helped complete task
+72,E,A,reply,0.6,Short reply
+73,F,B,reply,0.8,Quick answer
+74,A,B,code_review,0.9,Reviewed PR
+75,B,C,reply,0.7,Moderate reply
+76,C,D,task_support,1.0,Completed feature
+77,D,A,reply,0.6,Slow response
+78,E,F,reply,0.7,Helpful reply
+79,F,E,task_support,0.9,Resolved blocker
+80,A,F,reply,0.8,Good answer
+81,B,A,reply,0.7,Clarified question
+82,C,B,code_review,0.8,Minor review
+83,D,C,reply,0.6,Average reply
+84,E,D,task_support,0.9,Helped fix issue
+85,F,A,reply,0.7,Answered question
+86,A,E,reply,0.8,Clear explanation
+87,B,F,task_support,0.9,Helped debug
+88,C,A,reply,0.7,Moderate reply
+89,D,B,reply,0.6,Slow answer
+90,E,C,reply,0.8,Quick reply
+91,F,D,code_review,0.9,Strong review
+92,A,B,task_support,1.0,Resolved issue
+93,B,C,reply,0.7,Helpful reply
+94,C,E,task_support,0.9,Helped complete task
+95,D,F,reply,0.6,Moderate response
+96,E,A,reply,0.7,Clarified question
+97,F,B,reply,0.8,Quick answer
+98,A,C,reply,0.9,Strong explanation
+99,B,D,task_support,0.9,Helped unblock
+100,C,F,reply,0.7,Answered clearly
+101,D,E,reply,0.6,Average response
+102,E,D,task_support,0.9,Resolved blocker
+103,F,A,reply,0.7,Follow up
+104,A,E,code_review,0.9,Reviewed PR
+105,B,C,reply,0.6,Moderate reply
+106,C,A,task_support,1.0,Completed feature
+107,D,B,reply,0.7,Helpful answer
+108,E,F,reply,0.6,Short reply
+109,F,E,task_support,0.9,Helped fix issue
+110,A,D,reply,0.8,Clear answer
+111,B,E,reply,0.7,Moderate response
+112,C,D,code_review,0.8,Reviewed code
+113,D,A,task_support,0.9,Resolved task
+114,E,B,reply,0.6,Average reply
+115,F,C,reply,0.7,Helpful answer
+116,A,B,reply,0.9,Strong response
+117,B,C,task_support,0.8,Helped debug
+118,C,E,reply,0.7,Answered question
+119,D,F,reply,0.6,Moderate response
+120,E,D,task_support,0.9,Resolved issue
