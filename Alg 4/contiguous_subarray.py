@@ -1,33 +1,13 @@
-"""Dual Pointer Method"""
+def min_subarray_sum_dual_pointer(nums): 
+    min_sum     = float('inf') 
+    current_sum = 0 
 
-num = [-2,1,-3,4,-1,2,1,-5,4]
+    for num in nums: 
+        current_sum += num 
+        min_sum = min(min_sum, current_sum) 
+        if current_sum > 0:      # reset window when sum goes positive 
+            current_sum = 0 
 
-print(sum(num[0:3]))
+    return min_sum 
 
-def dual_point(num):
-    i = 0
-    j = 1
-    c = 0
-
-    lowest = []
-    cur_lowest = [num[0]]
-
-    while c < len(num):
-        if sum(num[i:j]) < sum(cur_lowest):
-            lowest.append(cur_lowest)
-            i += 1
-
-        elif sum(num[i:j]) > sum(cur_lowest):
-            cur_lowest = []
-            cur_lowest.append(num[j])
-        j += 1
-        c += 1
-    
-    temp = lowest[0]
-    for n in range(1, len(lowest)):
-        if sum(lowest[n]) < temp:
-            temp = lowest[n]
-    
-    return temp
-
-print(dual_point(num))
+print(min_subarray_sum_dual_pointer([-2, 1, -3, 4, -1, 2, 1, -5, 4])) 

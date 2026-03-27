@@ -4,6 +4,7 @@ lowercasing, removing punctuation, tokenization, removing stop words, and stemmi
 import re
 import string
 import nltk
+import copy
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 
@@ -12,11 +13,8 @@ nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
 stemmer = PorterStemmer()
 
-doc1 = "She sells sea shells by the seashore."
-doc2 = "How much wood would a woodchuck chuck, if a woodchuck could chuck wood?"
-doc3 = "A journey of a thousand miles begins with a single step."
-
-docs = [doc1, doc2, doc3]
+text = "The day was grey and bitter cold, and the dogs would not take the scent. " \
+"The big black hound had taken one sniff at the bear tracks, backed off, and skulked back to the pack with her tail between her legs."
 
 def normalize(sentence):
     # Lowercase
@@ -49,27 +47,71 @@ tokenized_docs = []
 vocab_docs = []
 
 
-# Normalize Docs
-for doc in docs:
-    tokenized_docs.append(normalize(doc))
+def punc_lower(text):
+    text = text.lower()
 
-# Find Vocab for docs
-for doc in tokenized_docs:
-    vocab_docs.append(vocab(doc))
+    punc = f'[{re.escape(string.punctuation)}]'
+    text = re.sub(punc, '', text)
 
-num = 1 
-for token in tokenized_docs:
-    print(f"Amount of Tokens for doc {num}: ", end='')
-    print(len(token))
-    num +=1
+    return text
 
+processed_text = punc_lower(text)
+
+def tokenize(text):
+    return text.split()
+
+tokenized_text = tokenize(processed_text)
+vocabulary = vocab(tokenized_text)
+
+def unigram(token):
+    keys = {}
+
+    for s in token:
+        if s not in keys:
+            keys.update({s : 1})
+        else:
+            temp = keys.get(s)
+            temp += 1
+            keys.update({s : temp})
+    return keys
+
+def unigram_probs(probs):
+    total = 0
+
+    for key in probs:
+        total += probs.get(key)
+
+    new_probs = copy.deepcopy(probs)
+
+    for key in probs:
+        val = probs.get(key)
+        temp = val / total
+        new_probs.update({key : temp})
+    
+    return new_probs
+
+def lap_uni(probs):
+    total = 0
+
+    for key in probs:
+        total += probs.get(key)
+
+    new_probs = copy.deepcopy(probs)
+
+    for key in probs:
+        val = probs.get(key)
+        temp = (val + 1) / (total + len(vocabulary))
+        new_probs.update({key : temp})
+    
+    return new_probs
+
+counts = unigram(tokenized_text)
+
+print(counts)
 print()
+# Probabilities without smoothing
+print(unigram_probs(counts))
+print()
+print(lap_uni(counts))
 
-num = 1 
-for token in vocab_docs:
-    print(f"Amount of vocab for doc {num}: ", end='')
-    print(len(token))
-    num +=1
-        
-print(tokenized_docs)
-print(vocab_docs)
+
