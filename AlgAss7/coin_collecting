@@ -1,0 +1,70 @@
+board = [
+    [0, "X", 0, 1, 0, 0],
+    [1, 0, 0, "X", 1, 0],
+    [0, 1, 0, "X", 1, 0],
+    [0, 0, 0, 1, 0, 1],
+    ["X", "X", "X", 0, 1, 0]
+]
+
+def coin_collect(board):
+    rows = len(board)
+    cols = len(board[0])
+
+    coins = []
+    paths = []
+
+    for r in range(rows):
+        coins.append([-1] * cols)
+        paths.append([0] * cols)
+
+    if board[0][0] != "X":
+        coins[0][0] = board[0][0]
+        paths[0][0] = 1
+
+    for r in range(rows):
+        for c in range(cols):
+            if r == 0 and c == 0:
+                continue
+
+            if board[r][c] == "X":
+                coins[r][c] = -1
+                paths[r][c] = 0
+            else:
+                top = -1
+                left = -1
+
+                if r > 0:
+                    top = coins[r - 1][c]
+                if c > 0:
+                    left = coins[r][c - 1]
+
+                best = max(top, left)
+
+                if best == -1:
+                    coins[r][c] = -1
+                    paths[r][c] = 0
+                else:
+                    coins[r][c] = best + board[r][c]
+
+                    if top > left:
+                        paths[r][c] = paths[r - 1][c]
+                    elif left > top:
+                        paths[r][c] = paths[r][c - 1]
+                    else:
+                        if top != -1:
+                            paths[r][c] = paths[r - 1][c] + paths[r][c - 1]
+
+    return coins, paths
+
+coins, paths = coin_collect(board)
+
+print("Coin table:")
+for row in coins:
+    print(row)
+
+print("\nPath table:")
+for row in paths:
+    print(row)
+
+print("\nMaximum coins collected:", coins[len(board) - 1][len(board[0]) - 1])
+print("Number of optimal paths:", paths[len(board) - 1][len(board[0]) - 1])

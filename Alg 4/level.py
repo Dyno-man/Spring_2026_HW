@@ -1,35 +1,65 @@
-def min_crossing_sum(arr, left, mid, right): 
+def gaussian_elimination(A, b):
+    n = len(A)
 
-    left_sum = float('inf')
-    total = 0 
+    mat = [list(map(float, row)) for row in A]
+    vec = list(map(float, b))
 
-    for i in range(mid, left - 1, -1): 
-        total += arr[i] 
-        left_sum = min(left_sum, total)
+    run = True
+    col = 0
 
-    right_sum = float('inf') 
-    total = 0 
+    while run:
+        if col >= n:
+            run = False
+            continue
 
-    for i in range(mid + 1, right + 1): 
-        total += arr[i] 
-        right_sum = min(right_sum, total) 
+        pivot_row = col
+        best = abs(mat[col][col])
+        for r in range(col + 1, n):
+            if abs(mat[r][col]) > best:
+                best = abs(mat[r][col])
+                pivot_row = r
 
-    return left_sum + right_sum 
+        if best < 1e-12:
+            raise ValueError("Matrix is singular or nearly singular")
 
- 
+        if pivot_row != col:
+            mat[col], mat[pivot_row] = mat[pivot_row], mat[col]
+            vec[col], vec[pivot_row] = vec[pivot_row], vec[col]
 
-def min_subarray_sum_dc(arr, left, right): 
+        row = col + 1
+        while row < n:
+            factor = mat[row][col] / mat[col][col]
 
-    if left == right: 
-        return arr[left] 
+            k = col
+            while k < n:
+                mat[row][k] = mat[row][k] - factor * mat[col][k]
+                k += 1
 
-    mid = (left + right) // 2 
-    left_min  = min_subarray_sum_dc(arr, left, mid) 
-    right_min = min_subarray_sum_dc(arr, mid + 1, right) 
-    cross_min = min_crossing_sum(arr, left, mid, right) 
+            vec[row] = vec[row] - factor * vec[col]
+            row += 1
 
-    return min(left_min, right_min, cross_min) 
+        col += 1
 
-nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4] 
+    x = [0.0] * n
+    i = n - 1
+    while i >= 0:
+        s = 0.0
+        j = i + 1
+        while j < n:
+            s += mat[i][j] * x[j]
+            j += 1
 
-print(min_subarray_sum_dc(nums, 0, len(nums) - 1)) 
+        x[i] = (vec[i] - s) / mat[i][i]
+        i -= 1
+
+    return x
+
+
+A = [
+    [1, 1, 1],
+    [2, 1, 1],
+    [1, -1, 3]
+]
+b = [2, 3, 8]
+
+print(gaussian_elimination(A, b)) 
